@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+#define ll long long
+#define endl "\n"
+#define pll pair<long long,long long>
+#define fi first
+#define se second
+#define MASK(i) (1 << (i))
+#define db double
+#define pii pair<int,int>
+#define pxy pair<double,double>
+#define inf = 1e18
+
+using namespace std;
+string s,t;
+vector<int> kitu[30];
+
+signed main(){
+	#define NAME ""
+	if(fopen(NAME".inp","r")){
+		freopen(NAME".inp","r",stdin);
+		freopen(NAME".out","w",stdout);
+	}
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+	cin >> s >> t;
+	int n = s.size();
+	int m = t.size();
+	s = " " + s;
+	t = " " + t;
+	for(int i = 1;i<=n;i++){
+		kitu[s[i] - 'a' + 1].push_back(i);
+	}		
+	ll ans = 0;
+	for(int i = 1;i<=m;i++){
+		int l = lower_bound(kitu[t[i]-'a'+1].begin(),kitu[t[i]-'a'+1].end(),i) - kitu[t[i] - 'a' + 1].begin();
+		int r = upper_bound(kitu[t[i]-'a'+1].begin(),kitu[t[i]-'a'+1].end(),n-m+i) - kitu[t[i]-'a'+1].begin()-1;
+		ans+=(r-l+1);
+	}
+	cout << ans;
+	cerr << endl << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n";
+	return 0;
+}
