@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define endl "\n"
+
+using namespace std;
+ll n,k;
+ll a[25];
+bool ok = false;
+void solve(int idx,ll temp){
+	if(ok) return;
+	if(temp == k){
+		ok = true;
+		return;
+	}
+	if(temp > k || idx  > n) return;
+	solve(idx+1,temp);
+	solve(idx+1,temp+a[idx]);
+}
+int main(){
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+	cin >> n >> k;
+	for(int i = 1;i<=n;i++) cin >> a[i];
+	solve(1,0);
+	if(ok) cout << "YES";
+	else cout << "NO";
+	return 0;
+}
