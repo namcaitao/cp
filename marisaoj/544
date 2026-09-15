@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+int n;
+char curr[] {'A','B','C'};
+void solve(int idx,string temp,char last){
+	if(idx >= n){
+		cout << temp << endl;
+		return;
+	}
+	for(int i = 0;i<3;i++){
+		if(last != curr[i]) solve(idx+1,temp+curr[i],curr[i]);
+	}
+}
+int main(){
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+	cin >> n;
+	solve(0,"",'X');
+	return 0;
+}
