@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+#define ll long long
+#define endl "\n"
+#define pll pair<long long,long long>
+#define fi first
+#define se second
+#define MASK(i) (1 << (i))
+#define db double
+#define pii pair<int,int>
+#define pxy pair<double,double>
+#define inf = 1e18
+
+using namespace std;
+const int maxn = 1e5+5;
+ll ps[maxn];
+int a[maxn];
+int t;
+ll dp[maxn];
+void solve(){
+	int n;cin >> n;
+	ps[0] = 0;
+	string s;cin >> s;
+	s = " " + s;
+	for(int i = 1;i<=n;i++){
+		a[i] = (s[i] - '0');
+		ps[i] = ps[i - 1] + a[i];
+	}
+	map<ll,ll> mp;
+	mp[0] = 1;
+	for(int i = 1;i<=n;i++){
+		mp[ps[i] - i]++;
+	}
+	ll ans = 0;
+	for(auto it : mp) ans += (it.second*(it.second - 1)/2);
+	cout << ans << endl;
+}
+signed main(){
+	#define NAME ""
+	if(fopen(NAME".inp","r")){
+		freopen(NAME".inp","r",stdin);
+		freopen(NAME".out","w",stdout);
+	}
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+	cin >> t;
+	while(t--){
+		solve();
+	}
+	cerr << endl << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n";
+	return 0;
+}
